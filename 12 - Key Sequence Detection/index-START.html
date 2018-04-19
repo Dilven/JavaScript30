@@ -7,6 +7,17 @@
 </head>
 <body>
 <script>
+
+  let KeysDown = '';
+  const secretCode = 'dilven';
+
+  window.addEventListener('keydown', (e) => {
+
+    KeysDown += e.key;
+    if (KeysDown.length > secretCode.length) KeysDown = KeysDown.slice(1);
+    if(KeysDown.includes(secretCode)) cornify_add();
+  })
+
 </script>
 </body>
 </html>
