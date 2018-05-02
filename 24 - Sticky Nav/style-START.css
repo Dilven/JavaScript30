@@ -67,7 +67,7 @@ li.logo {
   max-width:0;
   overflow: hidden;
   background: white;
-  transition: all .5s;
+  transition: all 1.5s;
   font-weight: 600;
   font-size: 30px;
 }
@@ -90,6 +90,6 @@ nav a {
   text-transform: uppercase;
 }
 
-.sticky-nav {
+.sticky-nav nav {
   position: fixed;
 }
