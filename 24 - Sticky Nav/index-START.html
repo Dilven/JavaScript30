@@ -71,14 +71,19 @@
     }
 
   const nav = document.querySelector('#main');
-  const { top: topOfNav } = nav.getBoundingClientRect();
-
-
+  console.dir(nav)
+  console.dir(nav.offsetTop)
 
   function sticky() {
-    console.log(this)
+    if(this.scrollY > nav.offsetTop) {
+      document.body.style.paddingTop = nav.offsetHeight + 'px';
+      nav.classList.add('sticky-nav');
+    } else {
+      document.body.style.paddingTop = nav.offsetHeight + 'px';
+      nav.classList.remove('sticky-nav');
+    }
   }
-  window.addEventListener('scroll', debounce(sticky))
+  window.addEventListener('scroll', sticky);
 
 </script>
 

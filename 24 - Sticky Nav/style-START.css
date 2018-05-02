@@ -76,6 +76,11 @@ li.logo a {
   color:black;
 }
 
+
+.sticky-nav li.logo {
+  max-width:500px;
+}
+
 nav a {
   text-decoration: none;
   padding:20px;
@@ -83,4 +88,8 @@ nav a {
   color:white;
   transition:all 0.2s;
   text-transform: uppercase;
+}
+
+.sticky-nav {
+  position: fixed;
 }
