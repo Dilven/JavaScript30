@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Video Speed Scrubber</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <div class="wrapper">
@@ -14,18 +16,27 @@
     </div>
   </div>
 
-<script>
+  <script>
 
-  const speedBar = document.querySelector('.speed');
+    const speed = document.querySelector('.speed');
+    const speedBar = document.querySelector('.speed-bar');
+    const video = document.querySelector('video')
 
-  speedBar.addEventListener('mouseo', () => {
-      console.log('lol')
-      mouseOn = true;
-  });
+    function changeSpeed(e) {
+      const cordsY = e.pageY - this.offsetTop;
+      const percent = cordsY / this.offsetHeight;
+      const height = Math.round(percent * 100) + '%';
+      speedBar.style.height = height;
+      const max = 4;
+      const min = 0.4;
+      const speedRate = percent * (max - min) + min;;
+      speedBar.textContent = speedRate.toFixed(2) + 'x';
+      video.playbackRate = speedRate;
+    }
 
+    speed.addEventListener('mousemove', changeSpeed);
 
-  speedBar.addEventListener('mousemove', () => console.log('lol'))
-
-</script>
+  </script>
 </body>
+
 </html>
