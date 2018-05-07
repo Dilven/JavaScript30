@@ -1,6 +1,7 @@
 const timeLeft = document.querySelector('.display__time-left');
 const endTime = document.querySelector('.display__end-time');
 const timerButtons = document.querySelectorAll('.timer__button');
+const selectAlarm = document.querySelector('[name="alarm"]')
 
 let countdown;
 
@@ -13,6 +14,9 @@ function timer(seconds) {
     if (seconds % 60 === 0) seconds - 60;
     seconds--
     if (seconds < 0) {
+      const sound = selectAlarm.value
+      const alarm = document.querySelector(`[name="${sound}"`);
+      alarm.play();
       clearInterval(countdown)
       return;
     }
