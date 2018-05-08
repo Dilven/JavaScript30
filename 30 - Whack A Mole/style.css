@@ -16,12 +16,26 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 10rem;
+  font-size: 7rem;
   line-height:1;
   margin-bottom: 0;
 }
+h2 {
+  text-align: center;
+  font-size: 5rem;
+  line-height:1;
+  margin-bottom: 0;
+  margin-top: 0.5;
+}
+
 
 .score {
+  background:rgba(255,255,255,0.2);
+  padding:0 3rem;
+  line-height:1;
+  border-radius:1rem;
+}
+.bestscore {
   background:rgba(255,255,255,0.2);
   padding:0 3rem;
   line-height:1;

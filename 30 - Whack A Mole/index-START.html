@@ -9,6 +9,7 @@
 <body>
 
   <h1>Whack-a-mole! <span class="score">0</span></h1>
+  <h2><span class="bestscore">Best score: 0</span></h2>
   <button onClick="startGame()">Start!</button>
 
   <div class="game">
@@ -36,7 +37,61 @@
   const holes = document.querySelectorAll('.hole');
   const scoreBoard = document.querySelector('.score');
   const moles = document.querySelectorAll('.mole');
+  const bestScoreBoard = document.querySelector('.bestscore');
 
+
+  if (!localStorage.getItem("bestScore")) localStorage.setItem("bestScore", "0")
+
+  let latestHole;
+  let timeUp = false;
+  let game;
+  let score = 0;
+
+  bestScoreBoard.textContent = `Best score: ${localStorage.getItem("bestScore")}`
+  
+
+  const randomTime = function (min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+  };
+
+  function upMole (numberHole) {
+    holes.forEach(hole => hole.classList.add('up'))
+  };
+
+  function randomHole () {
+      holes.forEach(hole => hole.classList.remove('up'))
+      numberHoles = Math.floor(Math.random() * 6);
+      if(latestHole === numberHoles) {
+        randomHole();
+      }
+      latestHole = numberHoles
+      holes[numberHoles].classList.add('up')
+      if(timeUp) {
+        clearInterval(game);
+        holes.forEach(hole => hole.classList.remove('up'))
+        if(score > localStorage.getItem("bestScore")) {
+          localStorage.setItem("bestScore", score)
+          bestScoreBoard.textContent = `Best score: ${score}`;
+        }
+      }
+  };
+
+  function startGame() {
+    timeUp = false;
+    scoreBoard.textContent = 0;
+    score = 0;
+    game = setInterval(randomHole, randomTime(500,2000));
+    setTimeout(() => timeUp = true, 10000)
+  }
+
+  function hit(e) {
+    score++
+    scoreBoard.textContent = score;
+    this.parentNode.classList.remove('up');
+
+  }
+
+  moles.forEach(mole => mole.addEventListener('click', hit));
 </script>
 </body>
 </html>
